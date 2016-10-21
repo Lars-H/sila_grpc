@@ -2,3 +2,6 @@
 
 *.txt
 *.pyc
+*.xml
+*.iml
+.idea
