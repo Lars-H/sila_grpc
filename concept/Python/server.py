@@ -1,0 +1,80 @@
+import random
+import time
+
+from concurrent import futures
+
+import grpc
+from protos import device_pb2, SiLAService_pb2
+
+_ONE_DAY_IN_SECONDS = 60 * 60 * 24
+
+class SiLAService(SiLAService_pb2.SiLAServiceServicer):
+
+    def IsSiLA(self, request, context):
+        msg = SiLAService_pb2.IsSiLAResponse()
+        msg.serialNumber = 1
+        msg.manufacturer = "Merck"
+        msg.model = "CER-B8"
+        self.add_features(msg)
+        return msg
+
+
+    def add_features(self, msg):
+        feature = msg.feature.add()
+        feature.Identifier = "can-measure"
+        feature.Version = "1.0"
+        feature.DisplayName ="Measurement"
+        feature.Description  = "Measures data"
+        self.add_commands(feature)
+
+    def add_commands(self, feature):
+        command = feature.command.add()
+        command.Identifier = "get-temperature"
+        command.DisplayName = "Temperatur"
+        command.Description = "Measures the current temperature"
+
+        command = feature.command.add()
+        command.Identifier = "get-temperatureStream"
+        command.DisplayName = "TemperaturStream"
+        command.Description = "Measures the temperature for a defined number of times and returns the stream"
+        parameter = command.parameter.add()
+        parameter.Identifier = "length"
+
+
+class Device(device_pb2.ThermometerServicer):
+    def Temperature(self, request, context):
+        print ("Temperature Request")
+        datapoint = device_pb2.Datapoint()
+        datapoint.value = 20
+        datapoint.unit = 0
+        return datapoint
+
+    def TemperatureStream(self, request, context):
+        print ("Temperature Stream Request")
+        length = request.length
+        for i in range(0, length):
+            time.sleep(1)
+            datapoint = device_pb2.Datapoint()
+            val = 20 + random.normalvariate(0, 2)
+            datapoint.value = val
+            datapoint.unit = 0
+            yield datapoint
+
+
+def serve():
+    # Teste Mehrfach requests
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    device_pb2.add_ThermometerServicer_to_server(Device(), server)
+    SiLAService_pb2.add_SiLAServiceServicer_to_server(SiLAService(), server)
+
+    server.add_insecure_port('[::]:50051')
+    server.start()
+    try:
+        while True:
+            time.sleep(_ONE_DAY_IN_SECONDS)
+    except KeyboardInterrupt:
+        server.stop(0)
+
+
+if __name__ == '__main__':
+    serve()

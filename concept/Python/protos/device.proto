@@ -1,0 +1,44 @@
+//Proto File to define the service and its corresponding protocol buffers
+// python -m grpc.tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/route_guide.proto
+
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cl.grpc.device";
+option java_outer_classname = "deviceProto";
+option objc_class_prefix = "dev";
+
+package service;
+
+import "SiLAService.proto";
+//import "google/protobuf/timestamp.proto";
+
+//Thermometer Service Definition
+service Thermometer {
+    // Sends the current seconds
+    rpc Temperature (SiLAService.Empty) returns (Datapoint) {}
+
+    rpc TemperatureStream (StreamRequest) returns (stream Datapoint) {}
+}
+
+// Request
+message StreamRequest {
+    int32 length = 1;
+}
+
+// Unit Enum for temperature
+enum TemperaturUnit
+{
+    CELCIUS = 0;
+    KELVIN = 1;
+    FAHRENHEIT = 2;
+}
+
+// The response message containing a value and a unit
+message Datapoint {
+    double value = 1;
+    TemperaturUnit unit = 2;
+}
+
+

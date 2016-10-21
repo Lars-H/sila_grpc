@@ -1,0 +1,29 @@
+//Proto File to define the service and its corresponding protocol buffers
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cl.grpc.service";
+option java_outer_classname = "ServiceProto";
+option objc_class_prefix = "serv";
+
+package service;
+
+//Clock Service Definition
+service Clock {
+    // Sends the current seconds
+    rpc Seconds (Request) returns (SecondsReply) {}
+
+    // Sends the current seconds as a stream
+    rpc SecondsInterval (Request) returns (stream SecondsReply) {}
+}
+
+// Request
+message Request {
+    int32 id = 1;
+}
+
+// The response message containing the seconds
+message SecondsReply {
+    int32 seconds = 1;
+}
