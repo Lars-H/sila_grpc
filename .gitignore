@@ -1,7 +1,5 @@
-# Git ignore
-
+.idea/
+*.pyx
 *.txt
-*.pyc
 *.xml
 *.iml
-.idea
