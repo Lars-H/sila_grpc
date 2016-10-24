@@ -9,12 +9,27 @@ from protos import device_pb2, SiLAService_pb2
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 class SiLAService(SiLAService_pb2.SiLAServiceServicer):
+    """
+    Class that implements the SiLA Service
+    """
 
     def IsSiLA(self, request, context):
+        """
+        Returns the device information as definde by IsSiLA
+        Args:
+            request: Request message (Empty for IsSiLA)
+            context: Request context
+
+        Returns: Device information
+
+        """
+
         msg = SiLAService_pb2.IsSiLAResponse()
-        msg.serialNumber = 1
-        msg.manufacturer = "Merck"
-        msg.model = "CER-B8"
+        msg.serialNumber = 1 # Example data
+        msg.manufacturer = "Merck" # Example data
+        msg.model = "CER-B8" # Example data
+
+        # Fake Information
         self.add_features(msg)
         return msg
 
@@ -42,27 +57,53 @@ class SiLAService(SiLAService_pb2.SiLAServiceServicer):
 
 
 class Device(device_pb2.ThermometerServicer):
+    """
+    Class that implements the Thermometer Service
+    """
+
     def Temperature(self, request, context):
-        print ("Temperature Request")
+        """
+        Temperature RPC Method
+        Args:
+            request: Request message
+            context: Request Context
+
+        Returns: Temperature Datapoint
+
+        """
+        print ("Temperature Request") # Log
         datapoint = device_pb2.Datapoint()
-        datapoint.value = 20
+        datapoint.value = 20 # Fake value
         datapoint.unit = 0
         return datapoint
 
     def TemperatureStream(self, request, context):
-        print ("Temperature Stream Request")
+        """
+        Temperature Stream RPC Method
+        Args:
+            request: Request Method
+            context: Request Context
+
+        Returns: Datastream of temperature observations
+
+        """
+        print ("Temperature Stream Request")  # Log
         length = request.length
         for i in range(0, length):
             time.sleep(1)
             datapoint = device_pb2.Datapoint()
-            val = 20 + random.normalvariate(0, 2)
+            val = 20 + random.normalvariate(0, 2) # Fake values
             datapoint.value = val
             datapoint.unit = 0
             yield datapoint
 
 
 def serve():
-    # Teste Mehrfach requests
+    """
+    Main Server Loop
+    Returns: None
+
+    """
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     device_pb2.add_ThermometerServicer_to_server(Device(), server)
     SiLAService_pb2.add_SiLAServiceServicer_to_server(SiLAService(), server)
