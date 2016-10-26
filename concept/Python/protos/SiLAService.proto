@@ -9,6 +9,7 @@ package SiLAService;
 
 service SiLAService{
     rpc IsSiLA(Empty) returns (IsSiLAResponse){}
+    
 }
 
 // Empty request. No Information required

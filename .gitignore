@@ -1,5 +1,8 @@
 .idea/
-*.pyx
+*.pyc
 *.txt
 *.xml
 *.iml
+*.pdf
+*.ppt
+*.docx
