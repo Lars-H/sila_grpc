@@ -4,6 +4,7 @@ import utils
 import grpc
 import protos.device_pb2 as device_pb2
 import protos.SiLAService_pb2 as SiLAService_pb2
+from pprint import pprint
 
 class DeviceClient:
 
@@ -48,7 +49,7 @@ class DeviceClient:
 
         # Get response
         datagrams = stub.TemperatureStream(device_pb2.StreamRequest(length=length))
-
+        print (datagrams.initial_metadata())
         # Return response
         for data in datagrams:
             yield (utils.temperature_str(data))
@@ -60,10 +61,22 @@ class DeviceClient:
 
         """
         # Create stub to servie
-        stub= device_pb2.ThermometerStub(self.__channel)
-
+        stub = device_pb2.ThermometerStub(self.__channel).Temperature
         # Get response
-        datagram = stub.Temperature(SiLAService_pb2.Empty())
+        try:
+            # Using future in order to be able to read the metadata
+            future = stub.future(SiLAService_pb2.Empty(), timeout=5)
+            print ("Metadata: " + str(future.initial_metadata()))
 
-        # Return response
-        return utils.temperature_str(datagram)
+            # Data is equal to the future result
+            datagram = future.result()
+
+            # Return response
+            return utils.temperature_str(datagram)
+        except Exception as e:
+            print ("An Error has occured")
+            print (str(e))
+            #pprint(dir(datagram))
+
+
+

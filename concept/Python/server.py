@@ -72,10 +72,19 @@ class Device(device_pb2.ThermometerServicer):
 
         """
         print ("Temperature Request") # Log
-        datapoint = device_pb2.Datapoint()
-        datapoint.value = 20 # Fake value
-        datapoint.unit = 0
-        return datapoint
+        try:
+            datapoint = device_pb2.Datapoint()
+            metadata = [(b'device', b'Thermometer'), (b'version', b'0.1'), (b'precision', b'1 decimal')]
+            context.send_initial_metadata(metadata)
+            datapoint.value = 20  # Fake value
+            datapoint.unit = 0
+            return datapoint
+
+        except Exception as e:
+            print(e.message)
+            context.set_code(grpc.StatusCode.UNKNOWN)
+            context.set_details('An Error has occurred measuring the temperature value!')
+            return device_pb2.Datapoint()
 
     def TemperatureStream(self, request, context):
         """
@@ -89,6 +98,8 @@ class Device(device_pb2.ThermometerServicer):
         """
         print ("Temperature Stream Request")  # Log
         length = request.length
+        metadata = [(b'device', b'Thermometer'), (b'version', b'0.1'), (b'precision', b'1 decimal')]
+        context.send_initial_metadata(metadata)
         for i in range(0, length):
             time.sleep(1)
             datapoint = device_pb2.Datapoint()
@@ -110,6 +121,7 @@ def serve():
 
     server.add_insecure_port('[::]:50051')
     server.start()
+    print("Server running.")
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)

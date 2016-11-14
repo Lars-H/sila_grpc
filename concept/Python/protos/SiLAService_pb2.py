@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='SiLAService.proto',
   package='SiLAService',
   syntax='proto3',
-  serialized_pb=_b('\n\x11SiLAService.proto\x12\x0bSiLAService\"\x07\n\x05\x45mpty\"r\n\x0eIsSiLAResponse\x12\x14\n\x0cserialNumber\x18\x01 \x01(\x03\x12\x14\n\x0cmanufacturer\x18\x02 \x01(\t\x12\r\n\x05model\x18\x03 \x01(\t\x12%\n\x07\x66\x65\x61ture\x18\x04 \x03(\x0b\x32\x14.SiLAService.Feature\"\x7f\n\x07\x46\x65\x61ture\x12\x12\n\nIdentifier\x18\x01 \x01(\t\x12\x0f\n\x07Version\x18\x02 \x01(\t\x12\x13\n\x0b\x44isplayName\x18\x03 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x04 \x01(\t\x12%\n\x07\x63ommand\x18\x05 \x03(\x0b\x32\x14.SiLAService.Command\"r\n\x07\x43ommand\x12\x12\n\nIdentifier\x18\x01 \x01(\t\x12\x13\n\x0b\x44isplayName\x18\x02 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x03 \x01(\t\x12)\n\tparameter\x18\x04 \x03(\x0b\x32\x16.SiLAService.Parameter\"\x1f\n\tParameter\x12\x12\n\nIdentifier\x18\x01 \x01(\t2J\n\x0bSiLAService\x12;\n\x06IsSiLA\x12\x12.SiLAService.Empty\x1a\x1b.SiLAService.IsSiLAResponse\"\x00\x42\x33\n\x14\x63l.grpc.sila_serviceB\x12sila_service_protoP\x01\xa2\x02\x04silab\x06proto3')
+  serialized_pb=_b('\n\x11SiLAService.proto\x12\x0bSiLAService\"\x07\n\x05\x45mpty\"r\n\x0eIsSiLAResponse\x12\x14\n\x0cserialNumber\x18\x01 \x01(\x03\x12\x14\n\x0cmanufacturer\x18\x02 \x01(\t\x12\r\n\x05model\x18\x03 \x01(\t\x12%\n\x07\x66\x65\x61ture\x18\x04 \x03(\x0b\x32\x14.SiLAService.Feature\"\x7f\n\x07\x46\x65\x61ture\x12\x12\n\nIdentifier\x18\x01 \x01(\t\x12\x0f\n\x07Version\x18\x02 \x01(\t\x12\x13\n\x0b\x44isplayName\x18\x03 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x04 \x01(\t\x12%\n\x07\x63ommand\x18\x05 \x03(\x0b\x32\x14.SiLAService.Command\"r\n\x07\x43ommand\x12\x12\n\nIdentifier\x18\x01 \x01(\t\x12\x13\n\x0b\x44isplayName\x18\x02 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x03 \x01(\t\x12)\n\tparameter\x18\x04 \x03(\x0b\x32\x16.SiLAService.Parameter\"I\n\tParameter\x12\x12\n\nIdentifier\x18\x01 \x01(\t\x12\x13\n\x0b\x44isplayName\x18\x02 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x03 \x01(\t2J\n\x0bSiLAService\x12;\n\x06IsSiLA\x12\x12.SiLAService.Empty\x1a\x1b.SiLAService.IsSiLAResponse\"\x00\x42\x33\n\x14\x63l.grpc.sila_serviceB\x12sila_service_protoP\x01\xa2\x02\x04silab\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -227,6 +227,20 @@ _PARAMETER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='DisplayName', full_name='SiLAService.Parameter.DisplayName', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='Description', full_name='SiLAService.Parameter.Description', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -240,7 +254,7 @@ _PARAMETER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=404,
-  serialized_end=435,
+  serialized_end=477,
 )
 
 _ISSILARESPONSE.fields_by_name['feature'].message_type = _FEATURE

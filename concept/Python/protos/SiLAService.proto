@@ -9,7 +9,7 @@ package SiLAService;
 
 service SiLAService{
     rpc IsSiLA(Empty) returns (IsSiLAResponse){}
-    
+
 }
 
 // Empty request. No Information required
@@ -50,4 +50,6 @@ message Command
 message Parameter
 {
     string Identifier = 1;
+    string DisplayName = 2;
+    string Description = 3;
 }
