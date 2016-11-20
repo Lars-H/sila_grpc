@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+// Import standard library
+import "/stdlib.proto";
+
+// Import is_sila
+import "is_sila.proto";
+
+// Import can_weigh
+import "can_weigh.proto";

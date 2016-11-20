@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// Import standard library
+import "stdlib.proto";
+
+// Namespace --> To be discussed
+package org.sila_standard.v2.realease_candidate.is_sila;
+
+
+
+// Feature "is_sila"
+service is_sila
+{
+    // Property: WSDL
+    rpc wsdl(stdlib.Empty) returns (stdlib.String){};
+
+
+    // Property: SiLA Interface Version
+    rpc sila_interface_version(stdlib.Empty) returns (stdlib.String){};
+
+}
