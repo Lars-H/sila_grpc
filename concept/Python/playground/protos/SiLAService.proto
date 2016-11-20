@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cl.grpc.sila_service";
+option java_outer_classname = "sila_service_proto";
+option objc_class_prefix = "sila";
+
+package SiLAService;
+
+service SiLAService{
+    rpc IsSiLA(Empty) returns (IsSiLAResponse){}
+
+}
+
+// Empty request. No Information required
+message Empty
+{
+}
+
+// Response for the IsSiLA request, providing basic information
+message IsSiLAResponse
+{
+    int64 serialNumber = 1;
+    string manufacturer = 2;
+    string model = 3;
+    repeated Feature feature = 4;
+}
+
+// Message to describe the features of a device
+message Feature
+{
+    string Identifier = 1;
+    string Version = 2;
+    string DisplayName = 3;
+    string Description = 4;
+    repeated Command command = 5;
+}
+
+// Message to describe the commands of feature of a device
+message Command
+{
+    string Identifier = 1;
+    string DisplayName = 2;
+    string Description = 3;
+    repeated Parameter parameter = 4;
+}
+
+// Message to describe the parameters of a command
+// TODO: Add more information, see Specification
+message Parameter
+{
+    string Identifier = 1;
+    string DisplayName = 2;
+    string Description = 3;
+}
