@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// Import standard library
+import "stdlib.proto";
+
+// Namespace
+package org.cubuslab;
+
+
+
+// Feature "can_weigh"
+service can_weigh
+{
+    // Property: Weight
+    rpc weight(stdlib.Empty) returns (stdlib.Double){};
+
+}

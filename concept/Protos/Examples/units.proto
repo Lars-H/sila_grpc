@@ -7,14 +7,27 @@ option objc_class_prefix = "units";
 
 package units;
 
+service test_service
+{
+    rpc get_name(Empty) returns (String){};
 
-message observation{
+}
+
+message Empty
+{}
+
+message String
+{
+    string data = 1;
+}
+
+message Observation{
     double value = 1;
-    units unit = 2;
+    Units unit = 2;
 }
 
 
-enum units{
+enum Units{
     option allow_alias = true;
     NONE = 0;
     GRAMM = 1;

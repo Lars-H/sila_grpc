@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+
+
+package stdlib;
+
+
+// Empty Message
+// Used for Properties
+message Empty
+{}
+
+// String Message
+message String
+{
+    string data = 1;
+}
+
+
+message Double
+{
+    double data = 1;
+}
+
