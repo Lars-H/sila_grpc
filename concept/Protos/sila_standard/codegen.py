@@ -1,6 +1,6 @@
 from grpc.tools import protoc
 
-protofile = "is_sila"
+protofile = "stdlib"
 cmd = (
     '' ,
     '-I.',
