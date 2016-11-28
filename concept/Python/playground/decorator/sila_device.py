@@ -5,21 +5,37 @@ def Sila_device(Cls):
     import stdlib_pb2
     import grpc
     import time
+    import logging
     from concurrent import futures
 
     class NewCls(is_sila_pb2.is_silaServicer):
         def __init__(self,*args,**kwargs):
+            # Initial base class
             self.oInstance = Cls(*args,**kwargs)
             self.__wsdl = 'Test'
             self.__int_vers = '0.1'
+
+            # Set up Server
             self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
+            is_sila_pb2.add_is_silaServicer_to_server(self, self.server)
+
+            # Set up Logger
+            logging.basicConfig(level=logging.INFO)
+            self.logger = logging.getLogger('is_sila')
+
         def wsdl(self, request, context):
+
+            self.logger.info('WSDL request')
+
             msg = stdlib_pb2.String()
             msg.data = self.__wsdl
             return msg
 
         def sila_interface_version(self, request, context):
+
+            self.logger.info('SiLA Interface Version request')
+
             msg = stdlib_pb2.String()
             msg.data = self.__int_vers
             return msg
@@ -27,7 +43,7 @@ def Sila_device(Cls):
         def run_server(self):
             self.server.add_insecure_port('[::]:50051')
             self.server.start()
-            print('Server running.')
+            self.logger.info('Server running')
             try:
                 while True:
                     time.sleep(60 * 60 * 24)

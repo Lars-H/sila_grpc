@@ -1,5 +1,6 @@
 import random
 import time
+import logging
 
 from concurrent import futures
 
@@ -7,6 +8,8 @@ import grpc
 from protos import device_pb2, SiLAService_pb2
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
+
+logging.basicConfig(level=logging.INFO)
 
 class SiLAService(SiLAService_pb2.SiLAServiceServicer):
     """
@@ -96,18 +99,26 @@ class Device(device_pb2.ThermometerServicer):
         Returns: Datastream of temperature observations
 
         """
-        print ("Temperature Stream Request")  # Log
+        logging.info("Temperature Stream Request")  # Log
         length = request.length
         metadata = [(b'device', b'Thermometer'), (b'version', b'0.1'), (b'precision', b'1 decimal')]
         context.send_initial_metadata(metadata)
-        for i in range(0, length):
-            time.sleep(1)
-            datapoint = device_pb2.Datapoint()
-            val = 20 + random.normalvariate(0, 2) # Fake values
-            datapoint.value = val
-            datapoint.unit = 0
-            yield datapoint
+        context.add_callback(self.stream_callback)
+        try:
+            for i in range(0, length):
+                time.sleep(1)
+                datapoint = device_pb2.Datapoint()
+                val = 20 + random.normalvariate(0, 2) # Fake values
+                datapoint.value = val
+                datapoint.unit = 0
+                logging.info('Sending data')
+                yield datapoint
+        except Exception as e:
+            logging.exception(str(e))
 
+
+    def stream_callback(self):
+        logging.info('Client has disconnected from stream')
 
 def serve():
     """
@@ -121,7 +132,7 @@ def serve():
 
     server.add_insecure_port('[::]:50051')
     server.start()
-    print("Server running.")
+    logging.info("Server running.")
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)

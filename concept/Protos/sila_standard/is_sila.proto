@@ -21,8 +21,8 @@ service is_sila
     // Property: Device Manufacturer
     rpc device_manufacturer(stdlib.Empty) returns (stdlib.String){};
 
-    // Property: Service name
-    rpc service_name(stdlib.Empty) returns (stdlib.String){};
+    // Property: Device name
+    rpc device_name(stdlib.Empty) returns (stdlib.String){};
 
     // Property: Device serial number
     rpc device_serial_number(stdlib.Empty) returns (stdlib.String){};

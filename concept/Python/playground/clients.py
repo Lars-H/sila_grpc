@@ -4,6 +4,8 @@ import utils
 import grpc
 import protos.device_pb2 as device_pb2
 import protos.SiLAService_pb2 as SiLAService_pb2
+import logging
+logging.basicConfig(level=logging.INFO)
 from pprint import pprint
 
 class DeviceClient:
@@ -49,10 +51,22 @@ class DeviceClient:
 
         # Get response
         datagrams = stub.TemperatureStream(device_pb2.StreamRequest(length=length))
-        print (datagrams.initial_metadata())
+        logging.info(datagrams.initial_metadata())
+
+        i = 0
         # Return response
-        for data in datagrams:
-            yield (utils.temperature_str(data))
+        try:
+            for data in datagrams:
+                yield (utils.temperature_str(data))
+                i += 1
+
+                # Example: Cancel Stream after 5 Messages have been received
+                if i == 5:
+                    datagrams.cancel()
+                    break
+        except grpc.RpcError as e:
+            print(str(e))
+            logging.exception(e.message)
 
     def get_datapoint(self):
         """
@@ -65,8 +79,9 @@ class DeviceClient:
         # Get response
         try:
             # Using future in order to be able to read the metadata
+
             future = stub.future(SiLAService_pb2.Empty(), timeout=5)
-            print ("Metadata: " + str(future.initial_metadata()))
+            logging.info("Metadata: " + str(future.initial_metadata()))
 
             # Data is equal to the future result
             datagram = future.result()
@@ -74,8 +89,8 @@ class DeviceClient:
             # Return response
             return utils.temperature_str(datagram)
         except Exception as e:
-            print ("An Error has occured")
-            print (str(e))
+            logging.exception("An Error has occured")
+            logging.exception(str(e))
             #pprint(dir(datagram))
 
 
