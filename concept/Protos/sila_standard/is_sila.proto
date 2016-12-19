@@ -1,8 +1,5 @@
 syntax = "proto3";
 
-// Import standard library
-import "stdlib.proto";
-
 // Namespace --> To be discussed
 package org.sila_standard.v2.realease_candidate.is_sila;
 
@@ -13,25 +10,51 @@ package org.sila_standard.v2.realease_candidate.is_sila;
 service is_sila
 {
     // Property: WSDL
-    rpc wsdl(stdlib.Empty) returns (stdlib.String){};
+    rpc wsdl(Empty) returns (String){};
 
     // Property: SiLA Interface Version
-    rpc sila_interface_version(stdlib.Empty) returns (stdlib.String){};
+    rpc sila_interface_version(Empty) returns (String){};
 
     // Property: Device Manufacturer
-    rpc device_manufacturer(stdlib.Empty) returns (stdlib.String){};
+    rpc device_manufacturer(Empty) returns (String){};
 
     // Property: Device name
-    rpc device_name(stdlib.Empty) returns (stdlib.String){};
+    rpc device_name(Empty) returns (String){};
 
     // Property: Device serial number
-    rpc device_serial_number(stdlib.Empty) returns (stdlib.String){};
+    rpc device_serial_number(Empty) returns (String){};
 
     // Property: Device Firmware version
-    rpc device_firmware_version(stdlib.Empty) returns (stdlib.String){};
+    rpc device_firmware_version(Empty) returns (String){};
+
+    // Property: Device Identification
+    // This Property holds all of the Information above
+    rpc device_identification(Empty) returns (DeviveIdentification){};
 
     // Property: Avaiable Features
     // As described in the spec the is_sila feature of a device should
     // proivde a description for all features of the device
 
+}
+
+// Empty Message
+// Used for Properties
+message Empty
+{}
+
+// String Message
+message String
+{
+    string data = 1;
+}
+
+// Message to hold all device identification information
+message DeviveIdentification
+{
+    string wsdl = 1;
+    string sila_interface_version = 2;
+    string device_manufacturer = 3;
+    string device_name = 4;
+    string device_serial_number = 5;
+    string device_firmware_version = 6;
 }

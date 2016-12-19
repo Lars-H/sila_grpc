@@ -1,0 +1,151 @@
+syntax = "proto3";
+
+// Namespace --> To be discussed
+package org.sila_standard.v2.realease_candidate.is_sila;
+
+
+// Feature "is_sila"
+// Version: 2
+//
+service is_sila
+{
+    // Property: Device Identification
+    // This Property holds all of the Information about the device
+    // This is related to the GetDeviceIdentification in SiLA 1.3
+    rpc device_identification(Empty) returns (DeviveIdentification){};
+
+    // Property: Supported Features
+    // This Property holds infortmation on all supported features of the device
+    rpc supported_features(Empty) returns (SupportedFeatures){};
+}
+
+// Empty message
+message Empty
+{}
+
+
+// Message to hold all device identification information
+message DeviveIdentification
+{
+    string wsdl = 1;
+    string sila_interface_version = 2;
+    string device_manufacturer = 3;
+    string device_name = 4;
+    string device_serial_number = 5;
+    string device_firmware_version = 6;
+}
+
+// Message to hold the information on supported Features
+message SupportedFeatures
+{
+    repeated FeatureDescription features = 1;
+}
+
+// Message to describe a Feature
+message FeatureDescription
+{
+    // General Information
+    string identifier = 1;
+    string version = 2;
+    string display_name = 3;
+    string description = 4;
+
+    // Commands
+    repeated CommandDescription commands = 5;
+
+    // Properties
+    repeated PropertyDescription properties = 6;
+
+    // Proto-File
+    // TODO: Discuss proposal
+    // Proposal: Include .proto File of the Feature
+    // Therefore, developers can easily get the .proto File
+    // And learn about how to use the feature
+    string proto_file = 7;
+
+}
+
+// Message to describe a command
+message CommandDescription
+{
+    // General Information
+    string identifier = 1;
+    string display_name = 2;
+    string description = 3;
+
+    // Parameters
+    repeated Parameter parameters = 4;
+
+    // Return Value
+    string return_value = 5;
+
+    // Return Type
+    string return_type = 6;
+
+    // Standard Errors
+    repeated string standard_error = 7;
+}
+
+// Property Description
+message PropertyDescription
+{
+    // General Information
+    string identifier = 1;
+    string display_name = 2;
+    string description = 3;
+
+    // Type
+    // TODO: As types are restricted to a set of potential options, this could be changen to an enum
+    string type = 4;
+
+    // Display Unit
+    string display_unit = 5;
+
+    // Default Value
+    string default_value = 6;
+
+    // Min Value
+    double min_value = 7;
+
+    // Max Value
+    double max_value = 8;
+
+    // Min length
+    int32 min_length = 9;
+
+    // Max length
+    int32 max_length = 10;
+}
+
+//TODO: Info: Currently in the Spec: property and parameter hold the same information
+
+// Parameter Description
+message Parameter
+{
+    // General Information
+    string identifier = 1;
+    string display_name = 2;
+    string description = 3;
+
+    // Type
+    // TODO: As types are restricted to a set of potential options, this could be changen to an enum
+    string type = 4;
+
+    // Display Unit
+    string display_unit = 5;
+
+    // Default Value
+    string default_value = 6;
+
+    // Min Value
+    double min_value = 7;
+
+    // Max Value
+    double max_value = 8;
+
+    // Min length
+    int32 min_length = 9;
+
+    // Max length
+    int32 max_length = 10;
+}
