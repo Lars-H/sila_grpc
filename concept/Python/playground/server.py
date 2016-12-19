@@ -77,14 +77,15 @@ class Device(device_pb2.ThermometerServicer):
         print ("Temperature Request") # Log
         try:
             datapoint = device_pb2.Datapoint()
-            metadata = [(b'device', b'Thermometer'), (b'version', b'0.1'), (b'precision', b'1 decimal')]
-            context.send_initial_metadata(metadata)
+
+            raise Exception
             datapoint.value = 20  # Fake value
             datapoint.unit = 0
             return datapoint
 
         except Exception as e:
-            print(e.message)
+            metadata = [(b'device', b'Thermometer'), (b'version', b'0.1'), (b'precision', b'1 decimal')]
+            context.send_initial_metadata(metadata)
             context.set_code(grpc.StatusCode.UNKNOWN)
             context.set_details('An Error has occurred measuring the temperature value!')
             return device_pb2.Datapoint()

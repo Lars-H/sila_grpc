@@ -1,7 +1,7 @@
 # TODO: Commenting and parameterize
 
 def Sila_device(Cls):
-    import is_sila_pb2
+    from concept.Python.playground.decorator.features import is_sila_pb2
     import stdlib_pb2
     import grpc
     import time
@@ -57,7 +57,7 @@ def Sila_device(Cls):
             slp = random.randint(0,10)
             self.logger.info("Waiting for %d seconds", slp)
             self.logger.info('WSDL request')
-            time.sleep(slp)
+            #time.sleep(7)
 
             try:
                 msg = stdlib_pb2.String()
@@ -65,7 +65,7 @@ def Sila_device(Cls):
                 return msg
             except KeyError as e:
                 logging.exception("An exception has occured: " + e.message)
-                context.set_details('SiLA Device errered')
+                context.set_details('SiLA Device: Information not found')
                 context.set_code(grpc.StatusCode.INTERNAL)
                 return stdlib_pb2.String()
 
@@ -78,8 +78,11 @@ def Sila_device(Cls):
                 msg = stdlib_pb2.String()
                 msg.data = self._information['sila_interface_version']
                 return msg
-            except KeyError:
-                logging.exception("Information missing on WSDL.")
+            except KeyError as e:
+                logging.exception("An exception has occured: " + e.message)
+                context.set_details('SiLA Device: Information not found')
+                context.set_code(grpc.StatusCode.INTERNAL)
+                return stdlib_pb2.String()
 
         def run_server(self):
             if self._initialized:

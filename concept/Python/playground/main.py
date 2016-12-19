@@ -48,11 +48,13 @@ if __name__ == '__main__':
 
             # Split input string to retrieve command and parameters
             inputStr = inputStr.split(" ")
-
-            # Execute command
-            if len(inputStr) >= 2:
-                command(inputStr[0], inputStr[1:][0])
-            else:
-                command(commandStr=inputStr[0])
+            try:
+                # Execute command
+                if len(inputStr) >= 2:
+                    command(inputStr[0], inputStr[1:][0])
+                else:
+                    command(commandStr=inputStr[0])
+            except Exception as e:
+                print("An Error has occured")
     except KeyboardInterrupt:
         print ("Client disconnected")

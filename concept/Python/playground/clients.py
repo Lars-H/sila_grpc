@@ -84,14 +84,13 @@ class DeviceClient:
             logging.info("Metadata: " + str(future.initial_metadata()))
 
             # Data is equal to the future result
+            #if future.code() ==
             datagram = future.result()
-
             # Return response
             return utils.temperature_str(datagram)
-        except Exception as e:
-            logging.exception("An Error has occured")
-            logging.exception(str(e))
-            #pprint(dir(datagram))
 
 
+        except grpc.RpcError as e:
+            #logging.info(" Error Metadata: " + str(future.initial_metadata()))
+            logging.exception(str(e.code()))
 
