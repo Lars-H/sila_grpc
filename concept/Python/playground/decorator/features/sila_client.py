@@ -12,12 +12,16 @@ def Sila_client(Cls):
             self.channel = grpc.insecure_channel('localhost:50051')
 
 
-        def wsdl(self):
+        def wsdl(self, timeout=0):
             # Create stub to servie
             stub = is_sila_pb2.is_silaStub(self.channel)
 
             # Get response
-            response = stub.wsdl(stdlib_pb2.Empty())
+            if timeout > 0:
+                response = stub.wsdl(stdlib_pb2.Empty(), timeout=timeout)
+            else:
+                response = stub.wsdl(stdlib_pb2.Empty())
+
 
             # Return response
             return response

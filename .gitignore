@@ -1,4 +1,6 @@
 .idea/
+concept/Python/playground/misc/
+
 *.pyc
 *.txt
 *.xml
