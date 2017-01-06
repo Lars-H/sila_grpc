@@ -9,3 +9,8 @@ concept/Python/playground/misc/
 *.ppt
 *.docx
 *.log 
+
+# Sublime Specific stuff
+*.sublime-project
+*.sublime-projectc
+*.sublime-workspace
