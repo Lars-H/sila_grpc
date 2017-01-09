@@ -12,8 +12,5 @@ concept/Python/playground/misc/
 
 # Sublime Specific stuff
 *.sublime-project
-<<<<<<< HEAD
 *.sublime-projectc
-=======
->>>>>>> 5f7efa922ca657b1b012eff63c0b3b7055266621
 *.sublime-workspace
