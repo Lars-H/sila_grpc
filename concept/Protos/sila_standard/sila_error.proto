@@ -3,7 +3,12 @@ syntax = "proto3";
 // Namespace
 package org.sila_standard.v2.realease_candidate.sila_error;
 
+// Info:
+// This Message is used to serialize the SiLA Error Message
+// The serialized data will be sent via the grpc error message
 
+
+// Error Message as described in the Specification
 message SiLA_Error_Message
 {
     // Error type
@@ -18,3 +23,4 @@ message SiLA_Error_Message
     // URI for Error Handling Feature
     string redirect = 4;
 }
+
