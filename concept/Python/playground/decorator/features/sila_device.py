@@ -2,12 +2,14 @@
 
 def Sila_device(Cls):
     from concept.Python.playground.decorator.features import is_sila_pb2
+    from concept.Python.playground.decorator.features import sila_error_pb2 as sila_error
     import stdlib_pb2
     import grpc
     import time
     import json
     import random
     import logging
+
     from concurrent import futures
 
     class NewCls(is_sila_pb2.is_silaServicer):
@@ -54,19 +56,20 @@ def Sila_device(Cls):
 
         def wsdl(self, request, context):
 
-            slp = random.randint(0,10)
-            self.logger.info("Waiting for %d seconds", slp)
             self.logger.info('WSDL request')
-            #time.sleep(7)
 
             try:
                 msg = stdlib_pb2.String()
-                msg.data = self._information['wsdl']
+                msg.data = self._information['test']
                 return msg
             except KeyError as e:
                 logging.exception("An exception has occured: " + e.message)
-                context.set_details('SiLA Device: Information not found')
-                context.set_code(grpc.StatusCode.INTERNAL)
+                error_msg = sila_error.SiLA_Error_Message()
+                error_msg.type = "Unknown Execution Error"
+                error_msg.description = "No WSDL File was found for the SiLA Device"
+                error_msg_str = error_msg.SerializeToString()
+                context.set_details(error_msg_str)
+                context.set_code(grpc.StatusCode.ABORTED)
                 return stdlib_pb2.String()
 
 
