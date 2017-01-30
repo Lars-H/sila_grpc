@@ -1,0 +1,40 @@
+// Example how to use Metadata in "long lasting" commands
+
+syntax = "proto3";
+
+
+// Namespace
+package org.sila_standard.v2.realease_candidate.sila_metadata;
+
+
+
+// Metadata
+message SiLAMetadata
+{
+    // Progress
+    double progress = 1;
+
+    // Completed
+    bool completed = 2;
+}
+
+// Command specific Data
+message Measurement
+{
+    // Value
+    double value = 1;
+
+    // Unit
+    string unit = 2;
+}
+
+// Actual Response of the Command
+message MeasurementResponse
+{
+    // Meta Datum
+    SiLAMetadata metadata = 1;
+
+    // Data
+    Measurement data = 2;
+
+}
