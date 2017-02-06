@@ -174,37 +174,37 @@ A technique definition / blueprint is a valid XML file conforming to the techniq
 			<xs:annotation>
 				<xs:documentation>The type of this parameter. The type implicitly defines the unit, if required.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="DisplayUnit" type="unitType" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>If type = PhysicalValue: A hint towards the unit to be used when presenting the value of this parameter.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="DefaultValue" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>The default value for this parameter. If the parameter is omitted when calling the command, the default is used.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="MinValue" type="xs:string" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>Min value (if Type is numeric)</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="MaxValue" type="xs:string" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>Max value (if Type is numeric)</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="MinLength" type="xs:integer" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>Min length of the string (if Type = String)</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="MaxLength" type="xs:integer" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>Max length of the string (if Type = String)</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 	</xs:sequence>	
 </xs:group>	
 
