@@ -95,7 +95,7 @@
 
 <xs:simpleType name="silaType">
 	<xs:annotation>
-		<xs:documentation>All type which can be as Parameter, ereturn values etc.</xs:documentation>
+		<xs:documentation>All type which can be as Parameter, return values etc.</xs:documentation>
 	</xs:annotation>
     <xs:restriction base="xs:string">
 		<xs:enumeration value="String">
@@ -216,16 +216,17 @@ A technique definition / blueprint is a valid XML file conforming to the techniq
 				Schema: [adjective_]noun(s) (optional adjective, singular or plural noun(s), depending on context)
 				Example: timeout, speed, temperature, vessel_temperature, front_door
 				</xs:documentation>
+        </xs:element>
 		<xs:element name="DisplayName" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Human readable and localized name of this parameter.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Description" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Human readable and localized description of this parameter.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:group ref="typedetail"/>	
 	</xs:sequence>
 </xs:complexType>
@@ -240,22 +241,22 @@ A technique definition / blueprint is a valid XML file conforming to the techniq
 				In case the error is one of those command standard error, its name is specified here.
 				</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Description" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>A human readable description of the error.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Type" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Specifies the Type of SiLA Error.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>>
 		<xs:element name="Redirect" type="xs:anyURI" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>In case the device supports a exception handling pattern, the redirect leads to the Feature which provides this handling capability (e.g. continuation tasks).</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 	</xs:sequence>
 </xs:complexType>
 
@@ -270,42 +271,42 @@ A technique definition / blueprint is a valid XML file conforming to the techniq
 				Example: initialize, get_status, lock, open, get_outstanding_sample_requests
 				</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="DisplayName" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Human readable and localized name of this command.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Description" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Human readable and localized description of this command.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Parameter" type="parameterType" minOccurs="0" maxOccurs="unbounded">
 			<xs:annotation>
 				<xs:documentation>A list of all parameters that may be used with this command.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="ReturnValue" type="xs:duration" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>As in SiLA 1.3 the immediate (sync) answer of a command may return the actual duration (based on current parameters and context).</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="ReturnType" type="silaType">
 			<xs:annotation>
 				<xs:documentation>The type of the return value (comes in an event).</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Duration" type="xs:duration" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>The expected duration to execute this command.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Error" type="errorType" minOccurs="0">
 			<xs:annotation>
 				<xs:documentation>A list of errors that might be returned when executing a command. The Standard Error Name MUST be contained in the SiLA Error Message.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 	</xs:sequence>
 </xs:complexType>
 
@@ -319,24 +320,24 @@ A technique definition / blueprint is a valid XML file conforming to the techniq
 				Example: timeout, speed, temperature, vessel_temperature, front_door
 				</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="DisplayName" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Human readable and localized name of this property.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Description" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Human readable and localized description of this property.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:group ref="typedetail">
-		<xs:element/>
 		<xs:element name="PropertyType" type="silaType">
 			<xs:annotation>
 				<xs:documentation>The type of this property. The type implicitly defines the unit, if required.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
+		</xs:group>
 	</xs:sequence>		
 </xs:complexType>
 
@@ -350,32 +351,32 @@ A technique definition / blueprint is a valid XML file conforming to the techniq
 				Example: needs_initialization, can_lock, can_open
 				</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Version" type="versionType">
 			<xs:annotation>
 				<xs:documentation>Version of this feature, major.minor.patch level.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>		
+		</xs:element>		
 		<xs:element name="DisplayName" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Human readable and localized name of this feature.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Description" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Human readable and localized description of this feature.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Command" type="commandType" minOccurs="0" maxOccurs="unbounded">
 			<xs:annotation>
 				<xs:documentation>A list of all commands that may be used in the context of this feature.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 		<xs:element name="Property" type="propertyType" minOccurs="0" maxOccurs="unbounded">
 			<xs:annotation>
 				<xs:documentation>A list of all properties that are associated with this feature.</xs:documentation>
 			</xs:annotation>
-		<xs:element/>
+		</xs:element>
 	</xs:sequence>		
 </xs:complexType>
 
