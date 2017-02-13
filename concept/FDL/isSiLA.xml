@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Feature xmlns="urn:org:sila-standard:feature:schema:draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:sila-standard:feature:schema:draft feature.xsd">
+	<Identifier>is_sila</Identifier>
+	<Version>0.1.0.0</Version>
+	<DisplayName>Is SiLA</DisplayName>
+	<Description>Mandatory Feature to proivde device information and the supported Features.</Description>
+</Feature>
