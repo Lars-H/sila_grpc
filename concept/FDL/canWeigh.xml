@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Feature xmlns="urn:org:sila-standard:feature:schema:draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:sila-standard:feature:schema:draft feature.xsd">
+	<Identifier>can_weigh</Identifier>
+	<Version>0.1.0.0</Version>
+	<DisplayName>can weigh</DisplayName>
+	<Description>Device can weigh.</Description>
+	<Command>
+		<Identifier>measure_stable_weight</Identifier>
+		<DisplayName>Stable weight.</DisplayName>
+		<Description>Measures the current value and returns as soon as the value stabilizes.</Description>
+		<Parameter>
+			<Identifier>timeout</Identifier>
+			<DisplayName>Timeout</DisplayName>
+			<Description>time to wait until a timeout exception is raised</Description>
+			<Type>Integer</Type>
+			<DisplayUnit label="ms" ><SIUnit factor="0.001" >s</SIUnit></DisplayUnit>
+			<DefaultValue>1</DefaultValue>
+			<MinValue>1</MinValue>
+			<MaxValue>100</MaxValue>
+		</Parameter>
+		<ReturnValue>The Stabilized weight.</ReturnValue>
+		<ReturnType>PhysicalValue</ReturnType>
+		<Error>
+			<Identifier>balance_not_calibrated</Identifier>
+			<Description>The balance has not been calibrated yet.</Description>
+			<Type>Standard Error</Type>
+		</Error>
+	</Command>
+	<Command>
+		<Identifier>calibrate_balance</Identifier>
+		<DisplayName>Balance calibration.</DisplayName>
+		<Description>Calibrates the balance</Description>
+		<ReturnType>Void</ReturnType>
+	</Command>
+
+	<Property>
+		<Identifier>current_weight</Identifier>
+		<DisplayName>Current Weight</DisplayName>
+		<Description>Current measured weight</Description>
+		<Type>PhysicalValue</Type>
+		<DefaultValue></DefaultValue>
+		<PropertyType>Dynamic</PropertyType>
+	</Property>
+</Feature>
