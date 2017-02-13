@@ -4,7 +4,6 @@ concept/Python/playground/misc/
 
 *.pyc
 *.txt
-*.xml
 *.iml
 *.pdf
 *.ppt
