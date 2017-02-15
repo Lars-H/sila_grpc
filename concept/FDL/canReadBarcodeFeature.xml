@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Feature xmlns="urn:org:sila-standard:feature:schema:draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:sila-standard:feature:schema:draft feature.xsd">
-	<Identifier>can_ReadCode</Identifier>
+	<Identifier>can_read_barcode</Identifier>
 	<Version>0.1.0.0</Version>
-	<DisplayName>can ReadCode</DisplayName>
+	<DisplayName>can read Barcode</DisplayName>
 	<Description>is able to read codes and return the scanned code</Description>	
 	<Command>
-		<Identifier>scan_Code</Identifier>
+		<Identifier>scan_code</Identifier>
 		<DisplayName>scan Code</DisplayName>
 		<Description>scans a code</Description>
 		<Parameter>
@@ -28,14 +28,14 @@
 		</Error>		
 	</Command>
 	<Command>
-		<Identifier>read_Code</Identifier>
+		<Identifier>read_code</Identifier>
 		<DisplayName>read Code</DisplayName>
 		<Description>returns the last scanned code</Description>		
 		<ReturnValue>the scanned Code</ReturnValue>
 		<ReturnType>String</ReturnType>
 	</Command>
 	<Command>
-		<Identifier>read_CodesContinously</Identifier>
+		<Identifier>read_codes_continously</Identifier>
 		<DisplayName>read Codes continously</DisplayName>
 		<Description>scans a code and returned the discoverd code</Description>		
 		<ReturnValue>the scanned Code</ReturnValue>
