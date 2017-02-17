@@ -13,56 +13,66 @@ package org.sila_standard.v2.realease_candidate.stdlib;
 // Empty Message
 // Used for Properties or
 message Void
-{}
+{
+    SiLA_Metadata metadata = 1;
+}
 
 // String Message
 message String
 {
-    string value = 1;
+    SiLA_Metadata metadata = 1;
+    string value = 2;
 }
 
 // Integer Message
 message Integer
 {
-    int64 value = 1;
+    SiLA_Metadata metadata = 1;
+    int64 value = 2;
 }
 
 // Real Number Message
 message RealNumbber
 {
-    double value = 1;
+    SiLA_Metadata metadata = 1;
+    double value = 2;
 }
 
 // Complex Number
 message ComplexNumber
 {
-    double real_value = 1;
-    double imaginary_value = 2;
+    SiLA_Metadata metadata = 1;
+    double real_value = 2;
+    double imaginary_value = 3;
 }
 
 // Physical Value
 message PhysicalValue
 {
-    double value = 1;
-    Unit unit = 2;
+    SiLA_Metadata metadata = 1;
+    double value = 2;
+    Unit unit = 3;
 }
 
 // Unit Message
 message Unit
 {
-    string value = 1;
+    SiLA_Metadata metadata = 1;
+    string value = 2;
 }
 
 // Boolean Message
 message Boolean
 {
-    bool value = 1;
+    SiLA_Metadata metadata = 1;
+    bool value = 2;
 }
 
 // Date Message
 message Date
 {
-    string value = 1;
+    SiLA_Metadata metadata = 1;
+    string value = 2;
 }
 
 
