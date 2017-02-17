@@ -93,3 +93,12 @@ message SiLA_Error_Message
     // URI for Error Handling Feature
     string redirect = 4;
 }
+
+// Property Request Message to hold information
+// on the Threshold and Frequency when subscribing to
+// a Property
+message SiLA_Property_Request
+{
+    PhysicalValue frequency = 1;
+    PhysicalValue threshold = 2;
+}
