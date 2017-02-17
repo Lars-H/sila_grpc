@@ -1,22 +1,95 @@
+// Standard Library Package
+// Contains the basic messages
+
 syntax = "proto3";
 
-package stdlib;
 
+// Standard Library Package
+package org.sila_standard.v2.realease_candidate.stdlib;
+
+
+// Wrapper for basic types
 
 // Empty Message
-// Used for Properties
-message Empty
+// Used for Properties or
+message Void
 {}
 
 // String Message
 message String
 {
-    string data = 1;
+    string value = 1;
 }
 
-
-message Double
+// Integer Message
+message Integer
 {
-    double data = 1;
+    int64 value = 1;
 }
 
+// Real Number Message
+message RealNumbber
+{
+    double value = 1;
+}
+
+// Complex Number
+message ComplexNumber
+{
+    double real_value = 1;
+    double imaginary_value = 2;
+}
+
+// Physical Value
+message PhysicalValue
+{
+    double value = 1;
+    Unit unit = 2;
+}
+
+// Unit Message
+message Unit
+{
+    string value = 1;
+}
+
+// Boolean Message
+message Boolean
+{
+    bool value = 1;
+}
+
+// Date Message
+message Date
+{
+    string value = 1;
+}
+
+
+// Complex SiLA Messages
+
+// SiLA Metaddata as described in the Specification
+// Required: progress
+// Optional: estimated_duration
+message SiLA_Metadata
+{
+    double progress = 1;
+    PhysicalValue estimated_duration = 2;
+}
+
+
+// Error Message as described in the Specification
+message SiLA_Error_Message
+{
+    // Error type
+    string type = 1;
+
+    // Human-readable desription of the error
+    string description = 2;
+
+    // Standard Error Name
+    string standard_error_name = 3;
+
+    // URI for Error Handling Feature
+    string redirect = 4;
+}
