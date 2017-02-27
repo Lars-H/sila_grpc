@@ -138,6 +138,11 @@
                     <xs:documentation>A unit (base or derived SI unit).</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
+            <xs:enumeration value="Protobuffer">
+                <xs:annotation>
+                    <xs:documentation>A Protobuffer message.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
             <xs:enumeration value="MIMEBased">
                 <xs:annotation>
                     <xs:documentation>Should we allow any MIME-type based, “BLOB” type?</xs:documentation>
@@ -174,6 +179,7 @@
                     <xs:documentation>void</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
+
         </xs:restriction>
     </xs:simpleType>
 
@@ -242,6 +248,25 @@
                 </xs:annotation>
             </xs:element>
             <xs:group ref="typedetail"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="grpcMessageType">
+        <xs:sequence>
+            <xs:element name="FieldName" type="identifierType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name of the field.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datatype">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name of the Datatype allowed within gRPC.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
