@@ -17,28 +17,24 @@
 			<DefaultValue>1</DefaultValue>
 			<MinValue>1</MinValue>
 			<MaxValue>100</MaxValue>
-		</Parameter>			
-		<ReturnValue>the scanned Code</ReturnValue>
+		</Parameter>
 		<ReturnType>String</ReturnType>
-		<Duration>PT0.5S</Duration>		
 		<Error>
 			<Identifier>no_barcode_found</Identifier>
-			<Description>no barcode could be scanned</Description>
-			<Type>???</Type>
+			<Description>No barcode could be scanned</Description>
+			<Type>StandardExecutionError</Type>
 		</Error>		
 	</Command>
 	<Command>
 		<Identifier>read_code</Identifier>
 		<DisplayName>read Code</DisplayName>
-		<Description>returns the last scanned code</Description>		
-		<ReturnValue>the scanned Code</ReturnValue>
+		<Description>returns the last scanned code</Description>
 		<ReturnType>String</ReturnType>
 	</Command>
 	<Command>
 		<Identifier>read_codes_continously</Identifier>
 		<DisplayName>read Codes continously</DisplayName>
-		<Description>scans a code and returned the discoverd code</Description>		
-		<ReturnValue>the scanned Code</ReturnValue>
+		<Description>scans a code and returned the discoverd code</Description>
 		<ReturnType>String</ReturnType>
 	</Command>
 
@@ -50,6 +46,6 @@
 		<DefaultValue>No Barcode Found</DefaultValue>		
 		<MinLength>5</MinLength>
 		<MaxLength>15</MaxLength>
-		<PropertyType>String</PropertyType>
+		<ValueChange>Dynamic</ValueChange>
 	</Property>
 </Feature>

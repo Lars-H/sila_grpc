@@ -4,4 +4,15 @@
 	<Version>0.1.0.0</Version>
 	<DisplayName>Is SiLA</DisplayName>
 	<Description>Mandatory Feature to proivde device information and the supported Features.</Description>
+
+    <!-- Get Device Information -->
+    <!-- By definition of the specification it is a Property -->
+    <Property>
+		<Identifier>device_information</Identifier>
+		<DisplayName>Get Device Information</DisplayName>
+		<Description>Provides the basic information on the device.</Description>
+		<Type>String</Type>
+		<DefaultValue></DefaultValue>
+		<ValueChange>Static</ValueChange>
+	</Property>
 </Feature>
