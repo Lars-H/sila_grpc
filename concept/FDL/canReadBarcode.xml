@@ -37,7 +37,7 @@
 			<Description>time to wait until a timeout exception is raised</Description>					
 			<Type>Integer</Type>
 			<DisplayUnit label="ms" ><SIUnit factor="0.001" >s</SIUnit></DisplayUnit>
-			<DefaultValue>1</DefaultValue>
+			<DefaultValue>2</DefaultValue>
 			<MinValue>1</MinValue>
 			<MaxValue>100</MaxValue>
 		</Parameter>			
