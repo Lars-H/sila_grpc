@@ -8,6 +8,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 from pprint import pprint
 
+
 class DeviceClient:
 
     def __init__(self, *args):
@@ -21,7 +22,8 @@ class DeviceClient:
         else:
             self.__channel = grpc.insecure_channel('localhost:50051')
 
-    # TODO: Make abstract class "SiLA Device" which needs to be implemented by every device
+    # TODO: Make abstract class "SiLA Device" which needs to be implemented by
+    # every device
     def is_sila(self):
         """
         Execute IsSiLA RPC call
@@ -50,7 +52,8 @@ class DeviceClient:
         stub = device_pb2.ThermometerStub(self.__channel)
 
         # Get response
-        datagrams = stub.TemperatureStream(device_pb2.StreamRequest(length=length))
+        datagrams = stub.TemperatureStream(
+            device_pb2.StreamRequest(length=length))
         logging.info(datagrams.initial_metadata())
 
         i = 0
@@ -84,13 +87,11 @@ class DeviceClient:
             logging.info("Metadata: " + str(future.initial_metadata()))
 
             # Data is equal to the future result
-            #if future.code() ==
+            # if future.code() ==
             datagram = future.result()
             # Return response
             return utils.temperature_str(datagram)
 
-
         except grpc.RpcError as e:
             #logging.info(" Error Metadata: " + str(future.initial_metadata()))
             logging.exception(str(e.code()))
-

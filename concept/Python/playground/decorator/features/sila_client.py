@@ -1,5 +1,6 @@
 # TODO: Error/Exception Handling
 
+
 def Sila_client(Cls):
     from concept.Python.playground.decorator.features import is_sila_pb2
     import stdlib_pb2
@@ -7,8 +8,8 @@ def Sila_client(Cls):
 
     class NewCls():
 
-        def __init__(self,*args, **kwargs):
-            self.oInstance = Cls(*args,**kwargs)
+        def __init__(self, *args, **kwargs):
+            self.oInstance = Cls(*args, **kwargs)
             host = "localhost"
             port = "50051"
             self.target = host + ":" + port
@@ -26,7 +27,6 @@ def Sila_client(Cls):
 
             # Return response
             return response
-
 
         def sila_interface_version(self):
             # Create stub to servie

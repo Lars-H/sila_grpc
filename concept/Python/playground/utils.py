@@ -13,6 +13,7 @@ def temperature_unit(value):
     else:
         return "unknown"
 
+
 def temperature_str(datapoint):
     """
     Returns the string representation of a temperature datapoint

@@ -40,11 +40,11 @@ if __name__ == '__main__':
             print ("Enter a command: ")
 
             # Read Input
-            inputStr =  raw_input()
+            inputStr = raw_input()
 
             # Check for exit command to end loop
             if re.match(inputStr, "exit", re.IGNORECASE) or re.match(inputStr, "q", re.IGNORECASE):
-                break;
+                break
 
             # Split input string to retrieve command and parameters
             inputStr = inputStr.split(" ")

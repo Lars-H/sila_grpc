@@ -11,6 +11,7 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 logging.basicConfig(level=logging.INFO)
 
+
 class SiLAService(SiLAService_pb2.SiLAServiceServicer):
     """
     Class that implements the SiLA Service
@@ -28,21 +29,20 @@ class SiLAService(SiLAService_pb2.SiLAServiceServicer):
         """
 
         msg = SiLAService_pb2.IsSiLAResponse()
-        msg.serialNumber = 1 # Example data
-        msg.manufacturer = "Merck" # Example data
-        msg.model = "CER-B8" # Example data
+        msg.serialNumber = 1  # Example data
+        msg.manufacturer = "Merck"  # Example data
+        msg.model = "CER-B8"  # Example data
 
         # Fake Information
         self.add_features(msg)
         return msg
 
-
     def add_features(self, msg):
         feature = msg.feature.add()
         feature.Identifier = "can-measure"
         feature.Version = "1.0"
-        feature.DisplayName ="Measurement"
-        feature.Description  = "Measures data"
+        feature.DisplayName = "Measurement"
+        feature.Description = "Measures data"
         self.add_commands(feature)
 
     def add_commands(self, feature):
@@ -74,7 +74,7 @@ class Device(device_pb2.ThermometerServicer):
         Returns: Temperature Datapoint
 
         """
-        print ("Temperature Request") # Log
+        print ("Temperature Request")  # Log
         try:
             datapoint = device_pb2.Datapoint()
 
@@ -84,10 +84,12 @@ class Device(device_pb2.ThermometerServicer):
             return datapoint
 
         except Exception as e:
-            metadata = [(b'device', b'Thermometer'), (b'version', b'0.1'), (b'precision', b'1 decimal')]
+            metadata = [(b'device', b'Thermometer'), (b'version',
+                                                      b'0.1'), (b'precision', b'1 decimal')]
             context.send_initial_metadata(metadata)
             context.set_code(grpc.StatusCode.UNKNOWN)
-            context.set_details('An Error has occurred measuring the temperature value!')
+            context.set_details(
+                'An Error has occurred measuring the temperature value!')
             return device_pb2.Datapoint()
 
     def TemperatureStream(self, request, context):
@@ -102,14 +104,15 @@ class Device(device_pb2.ThermometerServicer):
         """
         logging.info("Temperature Stream Request")  # Log
         length = request.length
-        metadata = [(b'device', b'Thermometer'), (b'version', b'0.1'), (b'precision', b'1 decimal')]
+        metadata = [(b'device', b'Thermometer'), (b'version',
+                                                  b'0.1'), (b'precision', b'1 decimal')]
         context.send_initial_metadata(metadata)
         context.add_callback(self.stream_callback)
         try:
             for i in range(0, length):
                 time.sleep(1)
                 datapoint = device_pb2.Datapoint()
-                val = 20 + random.normalvariate(0, 2) # Fake values
+                val = 20 + random.normalvariate(0, 2)  # Fake values
                 datapoint.value = val
                 datapoint.unit = 0
                 logging.info('Sending data')
@@ -117,9 +120,9 @@ class Device(device_pb2.ThermometerServicer):
         except Exception as e:
             logging.exception(str(e))
 
-
     def stream_callback(self):
         logging.info('Client has disconnected from stream')
+
 
 def serve():
     """

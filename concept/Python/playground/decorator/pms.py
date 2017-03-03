@@ -5,6 +5,7 @@ from concept.Python.playground.decorator.features.sila_client import Sila_client
 from concept.Python.playground.decorator.features.sila_error_pb2 import SiLA_Error_Message
 from requests.auth import HTTPBasicAuth
 
+
 @Sila_client
 class Balance_client():
 

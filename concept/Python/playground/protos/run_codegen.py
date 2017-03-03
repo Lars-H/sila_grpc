@@ -5,6 +5,7 @@ from grpc.tools import protoc
 buildSiLA = False
 buildDevice = False
 
+
 def build():
 
     print ("Status: Build started")
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     print (sys.argv)
     if len(sys.argv) == 1:
         # Build both
-        buildSiLA =True
+        buildSiLA = True
         buildDevice = True
 
     elif len(sys.argv) == 2:
@@ -54,4 +55,3 @@ if __name__ == "__main__":
         print ("Invalid Arguments")
 
     build()
-

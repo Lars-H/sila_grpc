@@ -1,23 +1,22 @@
-# TODO: Commenting and parameterize
+from concept.Python.playground.decorator.features import is_sila_pb2
+from concept.Python.playground.decorator.features import sila_error_pb2 as sila_error
+import stdlib_pb2
+import grpc
+import time
+import json
+import random
+import logging
+from concurrent import futures
 
-def Sila_device(Cls):
-    from concept.Python.playground.decorator.features import is_sila_pb2
-    from concept.Python.playground.decorator.features import sila_error_pb2 as sila_error
-    import stdlib_pb2
-    import grpc
-    import time
-    import json
-    import random
-    import logging
 
-    from concurrent import futures
+def Sila_device(object):
 
     class NewCls(is_sila_pb2.is_silaServicer):
         """
         Class that provides the commands and properties for the standard sila feature
         """
 
-        def __init__(self,*args,**kwargs):
+        def __init__(self, *args, **kwargs):
             # Initial base class
             self.oInstance = Cls()
 
@@ -39,9 +38,9 @@ def Sila_device(Cls):
             else:
                 logging.info("Device not initilized yet")
 
-
             # Set up Server
-            self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+            self.server = grpc.server(
+                futures.ThreadPoolExecutor(max_workers=10))
 
             is_sila_pb2.add_is_silaServicer_to_server(self, self.server)
 
@@ -72,7 +71,6 @@ def Sila_device(Cls):
                 context.set_code(grpc.StatusCode.ABORTED)
                 return stdlib_pb2.String()
 
-
         def sila_interface_version(self, request, context):
 
             self.logger.info('SiLA Interface Version request')
@@ -98,5 +96,6 @@ def Sila_device(Cls):
                 except KeyboardInterrupt:
                     self.server.stop(0)
             else:
-                logging.error("Could not start server. Device information has not been initialized.")
+                logging.error(
+                    "Could not start server. Device information has not been initialized.")
     return NewCls
