@@ -5,9 +5,9 @@
 	<DisplayName>can read Barcode</DisplayName>
 	<Description>is able to read codes and return the scanned code</Description>	
 	<Command>
-		<Identifier>scan_code</Identifier>
+		<Identifier>read_code</Identifier>
 		<DisplayName>scan Code</DisplayName>
-		<Description>scans a code</Description>
+		<Description>scans a code, returns the code, it also stores the scanned Barcode in the property barcode</Description>
 		<Parameter>
 			<Identifier>timeout</Identifier>
 			<DisplayName>Timeout</DisplayName>
@@ -17,8 +17,10 @@
 			<DefaultValue>1</DefaultValue>
 			<MinValue>1</MinValue>
 			<MaxValue>100</MaxValue>
-		</Parameter>
+		</Parameter>			
+		<ReturnValue>the scanned Code</ReturnValue>
 		<ReturnType>String</ReturnType>
+		<Duration>PT0.5S</Duration>		
 		<Error>
 			<Identifier>no_barcode_found</Identifier>
 			<Description>No barcode could be scanned</Description>
@@ -26,15 +28,29 @@
 		</Error>		
 	</Command>
 	<Command>
-		<Identifier>read_code</Identifier>
-		<DisplayName>read Code</DisplayName>
-		<Description>returns the last scanned code</Description>
+		<Identifier>read_code_noexp</Identifier>
+		<DisplayName>scan Code</DisplayName>
+		<Description>like reade_code, but does not throw exception</Description>
+		<Parameter>
+			<Identifier>timeout</Identifier>
+			<DisplayName>Timeout</DisplayName>
+			<Description>time to wait until a timeout exception is raised</Description>					
+			<Type>Integer</Type>
+			<DisplayUnit label="ms" ><SIUnit factor="0.001" >s</SIUnit></DisplayUnit>
+			<DefaultValue>1</DefaultValue>
+			<MinValue>1</MinValue>
+			<MaxValue>100</MaxValue>
+		</Parameter>			
+		<ReturnValue>the scanned Code</ReturnValue>
 		<ReturnType>String</ReturnType>
+		<Duration>PT0.5S</Duration>		
 	</Command>
+	
 	<Command>
 		<Identifier>read_codes_continously</Identifier>
 		<DisplayName>read Codes continously</DisplayName>
-		<Description>scans a code and returned the discoverd code</Description>
+		<Description>scans a code and returned the discoverd code</Description>		
+		<ReturnValue>the scanned Code</ReturnValue>
 		<ReturnType>String</ReturnType>
 	</Command>
 
@@ -47,5 +63,6 @@
 		<MinLength>5</MinLength>
 		<MaxLength>15</MaxLength>
 		<ValueChange>Dynamic</ValueChange>
+		<PropertyType>String</PropertyType>
 	</Property>
 </Feature>
