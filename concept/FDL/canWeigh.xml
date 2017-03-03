@@ -2,7 +2,7 @@
 <Feature xmlns="urn:org:sila-standard:feature:schema:draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:sila-standard:feature:schema:draft feature.xsd">
 	<Identifier>can_weigh</Identifier>
 	<Version>0.1.0.0</Version>
-	<DisplayName>can weigh</DisplayName>
+	<DisplayName>Can weigh</DisplayName>
 	<Description>Device can weigh.</Description>
 	<Command>
 		<Identifier>measure_stable_weight</Identifier>
@@ -18,12 +18,11 @@
 			<MinValue>1</MinValue>
 			<MaxValue>100</MaxValue>
 		</Parameter>
-		<ReturnValue>The Stabilized weight.</ReturnValue>
 		<ReturnType>PhysicalValue</ReturnType>
 		<Error>
 			<Identifier>balance_not_calibrated</Identifier>
 			<Description>The balance has not been calibrated yet.</Description>
-			<Type>Standard Error</Type>
+			<Type>StandardExecutionError</Type>
 		</Error>
 	</Command>
 	<Command>
@@ -38,7 +37,7 @@
 		<DisplayName>Current Weight</DisplayName>
 		<Description>Current measured weight</Description>
 		<Type>PhysicalValue</Type>
-		<DefaultValue></DefaultValue>
-		<PropertyType>Dynamic</PropertyType>
+        <DefaultValue></DefaultValue>
+        <ValueChange>Dynamic</ValueChange>
 	</Property>
 </Feature>

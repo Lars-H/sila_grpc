@@ -23,8 +23,8 @@
 		<Duration>PT0.5S</Duration>		
 		<Error>
 			<Identifier>no_barcode_found</Identifier>
-			<Description>no barcode could be scanned</Description>
-			<Type>???</Type>
+			<Description>No barcode could be scanned</Description>
+			<Type>StandardExecutionError</Type>
 		</Error>		
 	</Command>
 	<Command>
@@ -62,6 +62,7 @@
 		<DefaultValue>No Barcode Found</DefaultValue>		
 		<MinLength>5</MinLength>
 		<MaxLength>15</MaxLength>
+		<ValueChange>Dynamic</ValueChange>
 		<PropertyType>String</PropertyType>
 	</Property>
 </Feature>
