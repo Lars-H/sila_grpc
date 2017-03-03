@@ -11,7 +11,7 @@
 		<Identifier>device_information</Identifier>
 		<DisplayName>Get Device Information</DisplayName>
 		<Description>Provides the basic information on the device.</Description>
-		<Type>String</Type>
+		<Type>Protobuffer</Type>
 		<DefaultValue></DefaultValue>
 		<ValueChange>Static</ValueChange>
 	</Property>

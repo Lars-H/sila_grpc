@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--xs:schema targetNamespace="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" elementFormDefault="qualified" attributeFormDefault="unqualified"-->
+<xs:schema targetNamespace="urn:org:sila-standard:protobuf:schema:draft" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:org:sila-standard:feature:schema:draft" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:simpleType name="fieldType">
+        <xs:annotation>
+            <xs:documentation>Specifies the supported Protobuf Datatypes.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="int16"/>
+            <xs:enumeration value="int32"/>
+            <xs:enumeration value="int64"/>
+            <xs:enumeration value="string"/>
+            <xs:enumeration value="double"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="protobufMesssageType">
+        <xs:sequence>
+            <xs:element name="FieldName" type="identifierType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name of the field.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Datatype" type="fieldType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name of the Datatype allowed within gRPC.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

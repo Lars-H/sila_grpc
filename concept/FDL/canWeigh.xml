@@ -1,43 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Feature xmlns="urn:org:sila-standard:feature:schema:draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:sila-standard:feature:schema:draft feature.xsd">
-	<Identifier>can_weigh</Identifier>
-	<Version>0.1.0.0</Version>
-	<DisplayName>Can weigh</DisplayName>
-	<Description>Device can weigh.</Description>
-	<Command>
-		<Identifier>measure_stable_weight</Identifier>
-		<DisplayName>Stable weight.</DisplayName>
-		<Description>Measures the current value and returns as soon as the value stabilizes.</Description>
-		<Parameter>
-			<Identifier>timeout</Identifier>
-			<DisplayName>Timeout</DisplayName>
-			<Description>time to wait until a timeout exception is raised</Description>
-			<Type>Integer</Type>
-			<DisplayUnit label="ms" ><SIUnit factor="0.001" >s</SIUnit></DisplayUnit>
-			<DefaultValue>1</DefaultValue>
-			<MinValue>1</MinValue>
-			<MaxValue>100</MaxValue>
-		</Parameter>
-		<ReturnType>PhysicalValue</ReturnType>
-		<Error>
-			<Identifier>balance_not_calibrated</Identifier>
-			<Description>The balance has not been calibrated yet.</Description>
-			<Type>StandardExecutionError</Type>
-		</Error>
-	</Command>
-	<Command>
-		<Identifier>calibrate_balance</Identifier>
-		<DisplayName>Balance calibration.</DisplayName>
-		<Description>Calibrates the balance</Description>
-		<ReturnType>Void</ReturnType>
-	</Command>
+<Feature xmlns="urn:org:sila-standard:feature:schema:draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="urn:org:sila-standard:feature:schema:draft feature.xsd">
+    <Identifier>can_weigh</Identifier>
+    <Version>0.1.0.0</Version>
+    <DisplayName>Can weigh</DisplayName>
+    <Description>Device can weigh.</Description>
+    <Command>
+        <Identifier>measure_stable_weight</Identifier>
+        <DisplayName>Stable weight.</DisplayName>
+        <Description>Measures the current value and returns as soon as the value stabilizes.</Description>
+        <ReturnType>PhysicalValue</ReturnType>
+        <Error>
+            <Identifier>balance_not_calibrated</Identifier>
+            <Description>The balance has not been calibrated yet.</Description>
+            <Type>StandardExecutionError</Type>
+        </Error>
+    </Command>
+    <Command>
+        <Identifier>calibrate_balance</Identifier>
+        <DisplayName>Balance calibration.</DisplayName>
+        <Description>Calibrates the balance</Description>
+        <ReturnType>Void</ReturnType>
+    </Command>
 
-	<Property>
-		<Identifier>current_weight</Identifier>
-		<DisplayName>Current Weight</DisplayName>
-		<Description>Current measured weight</Description>
-		<Type>PhysicalValue</Type>
+    <!-- Set and Reset Tara may also be combined into a single command with a single
+    Parameter. Using this approach, however, as it appears more intuitive-->
+    <Command>
+        <Identifier>set_tara</Identifier>
+        <DisplayName>Set Tara balance.</DisplayName>
+        <Description>Set the current weight as the tara.</Description>
+        <ReturnType>Void</ReturnType>
+    </Command>
+
+    <Command>
+        <Identifier>reset_tara</Identifier>
+        <DisplayName>Reset Tara balance.</DisplayName>
+        <Description>Reset the tara weight of the balance.</Description>
+        <ReturnType>Void</ReturnType>
+    </Command>
+
+    <Property>
+        <Identifier>current_weight</Identifier>
+        <DisplayName>Current Weight</DisplayName>
+        <Description>Current measured weight</Description>
+        <Type>PhysicalValue</Type>
         <DefaultValue></DefaultValue>
         <ValueChange>Dynamic</ValueChange>
-	</Property>
+    </Property>
+
+    <Property>
+        <Identifier>precision</Identifier>
+        <DisplayName>Weighing precision</DisplayName>
+        <Description>Weighing precision of the balance</Description>
+        <Type>PhysicalValue</Type>
+        <DefaultValue></DefaultValue>
+        <ValueChange>Static</ValueChange>
+    </Property>
 </Feature>

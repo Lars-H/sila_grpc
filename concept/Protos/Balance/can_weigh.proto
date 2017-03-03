@@ -4,14 +4,26 @@ syntax = "proto3";
 import "stdlib.proto";
 
 // Namespace
-package org.cubuslab;
+package org.sila_standard.v2.realease_candidate.can_weigh;
 
 
 
 // Feature "can_weigh"
 service can_weigh
 {
-    // Property: Weight
-    rpc weight(stdlib.Empty) returns (stdlib.Double){};
+    // Command: measure_stable_weight
+    rpc measure_stable_weight(stdlib.Void) returns (stdlib.PhysicalValue){};
+
+    // Command: calibrate_balance
+    rpc calibrate_balance(stdlib.Void) returns (stdlib.Void){};
+
+    // Command: tara
+    rpc tara(stdlib.Void) returns (stdlib.Void){};
+
+    // Property: current_weight
+    rpc current_weight(stdlib.SiLA_Property_Request) returns (stream stdlib.PhysicalValue) {};
+
+    // Property: precision (as it is a static property, it is a unary service)
+    rpc precision(stdlib.SiLA_Property_Request) returns (stdlib.PhysicalValue) {};
 
 }
