@@ -51,14 +51,33 @@ message PhysicalValue
 {
     SiLA_Metadata metadata = 1;
     double value = 2;
-    Unit unit = 3;
+    string label = 3;
+    repeated Unit unit= 4;
 }
+
+
+
+
 
 // Unit Message
 message Unit
 {
-    SiLA_Metadata metadata = 1;
-    string value = 2;
+    double factor = 2;
+    double offset = 3;
+    double exponent = 4;
+    SIUnit siUnit = 5;
+
+}
+
+enum SIUnit
+{
+    METER = 1;
+    KILOGRAM = 2;
+    SECOND = 3;
+    AMPERE = 4;
+    KELVIN = 5;
+    MOLE= 6;
+    CANDELA = 7;
 }
 
 // Boolean Message
@@ -74,7 +93,6 @@ message Date
     SiLA_Metadata metadata = 1;
     string value = 2;
 }
-
 
 // Complex SiLA Messages
 
