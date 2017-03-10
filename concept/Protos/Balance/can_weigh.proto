@@ -17,13 +17,16 @@ service can_weigh
     // Command: calibrate_balance
     rpc calibrate_balance(stdlib.Void) returns (stdlib.Void){};
 
-    // Command: tara
-    rpc tara(stdlib.Void) returns (stdlib.Void){};
+    // Command: set_tara
+    rpc set_tara(stdlib.Void) returns (stdlib.Void){};
+
+    // Command: reset_tara
+    rpc reset_tara(stdlib.Void) returns (stdlib.Void){};
 
     // Property: current_weight
     rpc current_weight(stdlib.SiLA_Property_Request) returns (stream stdlib.PhysicalValue) {};
 
     // Property: precision (as it is a static property, it is a unary service)
-    rpc precision(stdlib.SiLA_Property_Request) returns (stdlib.PhysicalValue) {};
+    rpc precision(stdlib.Void) returns (stdlib.PhysicalValue) {};
 
 }
