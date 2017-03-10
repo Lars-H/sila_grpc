@@ -8,13 +8,14 @@ import logging
 
 from concurrent import futures
 
+
 class Sila_device(is_sila_pb2.is_silaServicer):
 
     """
     Class that provides the commands and properties for the standard sila feature
     """
 
-    def __init__(self,*args,**kwargs):
+    def __init__(self, *args, **kwargs):
 
         # Set up Logger
         logging.basicConfig(level=logging.INFO)
@@ -26,7 +27,8 @@ class Sila_device(is_sila_pb2.is_silaServicer):
         logging.info("Loading Information from: " + info_file)
         try:
             with open(info_file, 'r') as file:
-                self.__device_identification = json.loads(file.read())['is_sila']
+                self.__device_identification = json.loads(file.read())[
+                    'is_sila']
         except Exception as e:
             logging.error("Could not initilaize device information")
             logging.error(e.message)
@@ -37,11 +39,15 @@ class Sila_device(is_sila_pb2.is_silaServicer):
         try:
             msg = is_sila_pb2.DeviveIdentification()
             msg.wsdl = self.__device_identification['wsdl']
-            msg.sila_interface_version = self.__device_identification['sila_interface_version']
-            msg.device_manufacturer = self.__device_identification['device_manufacturer']
+            msg.sila_interface_version = self.__device_identification[
+                'sila_interface_version']
+            msg.device_manufacturer = self.__device_identification[
+                'device_manufacturer']
             msg.device_name = self.__device_identification['device_name']
-            msg.device_serial_number = self.__device_identification['device_serial_number']
-            msg.device_firmware_version = self.__device_identification['device_firmware_version']
+            msg.device_serial_number = self.__device_identification[
+                'device_serial_number']
+            msg.device_firmware_version = self.__device_identification[
+                'device_firmware_version']
             return msg
         except KeyError as e:
             logging.exception("An exception has occured: " + e.message)
@@ -55,5 +61,3 @@ class Sila_device(is_sila_pb2.is_silaServicer):
 
     def supported_features(self, request, context):
         pass
-
-

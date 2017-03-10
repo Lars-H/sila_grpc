@@ -2,7 +2,8 @@
 # source: can_weigh.proto
 
 import sys
-_b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
+_b = sys.version_info[0] < 3 and (
+    lambda x: x) or (lambda x: x.encode('latin1'))
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -17,16 +18,12 @@ import stdlib_pb2 as stdlib__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
-  name='can_weigh.proto',
-  package='org.sila_standard.v2.realease_candidate.can_weigh',
-  syntax='proto3',
-  serialized_pb=_b('\n\x0f\x63\x61n_weigh.proto\x12\x31org.sila_standard.v2.realease_candidate.can_weigh\x1a\x0cstdlib.proto2\xc9\x05\n\tcan_weigh\x12\x8e\x01\n\x15measure_stable_weight\x12\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\x1a=.org.sila_standard.v2.realease_candidate.stdlib.PhysicalValue\"\x00\x12\x81\x01\n\x11\x63\x61librate_balance\x12\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\x1a\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\"\x00\x12t\n\x04tara\x12\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\x1a\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\"\x00\x12\x9a\x01\n\x0e\x63urrent_weight\x12\x45.org.sila_standard.v2.realease_candidate.stdlib.SiLA_Property_Request\x1a=.org.sila_standard.v2.realease_candidate.stdlib.PhysicalValue\"\x00\x30\x01\x12\x93\x01\n\tprecision\x12\x45.org.sila_standard.v2.realease_candidate.stdlib.SiLA_Property_Request\x1a=.org.sila_standard.v2.realease_candidate.stdlib.PhysicalValue\"\x00\x62\x06proto3')
-  ,
-  dependencies=[stdlib__pb2.DESCRIPTOR,])
+    name='can_weigh.proto',
+    package='org.sila_standard.v2.realease_candidate.can_weigh',
+    syntax='proto3',
+    serialized_pb=_b('\n\x0f\x63\x61n_weigh.proto\x12\x31org.sila_standard.v2.realease_candidate.can_weigh\x1a\x0cstdlib.proto2\xb8\x06\n\tcan_weigh\x12\x8e\x01\n\x15measure_stable_weight\x12\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\x1a=.org.sila_standard.v2.realease_candidate.stdlib.PhysicalValue\"\x00\x12\x81\x01\n\x11\x63\x61librate_balance\x12\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\x1a\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\"\x00\x12x\n\x08set_tara\x12\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\x1a\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\"\x00\x12z\n\nreset_tara\x12\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\x1a\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\"\x00\x12\x9a\x01\n\x0e\x63urrent_weight\x12\x45.org.sila_standard.v2.realease_candidate.stdlib.SiLA_Property_Request\x1a=.org.sila_standard.v2.realease_candidate.stdlib.PhysicalValue\"\x00\x30\x01\x12\x82\x01\n\tprecision\x12\x34.org.sila_standard.v2.realease_candidate.stdlib.Void\x1a=.org.sila_standard.v2.realease_candidate.stdlib.PhysicalValue\"\x00\x62\x06proto3'),
+    dependencies=[stdlib__pb2.DESCRIPTOR, ])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
-
-
 
 
 import grpc
@@ -37,217 +34,263 @@ from grpc.framework.interfaces.face import utilities as face_utilities
 
 
 class can_weighStub(object):
-  """Feature "can_weigh"
-  """
-
-  def __init__(self, channel):
-    """Constructor.
-
-    Args:
-      channel: A grpc.Channel.
+    """Feature "can_weigh"
     """
-    self.measure_stable_weight = channel.unary_unary(
-        '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/measure_stable_weight',
-        request_serializer=stdlib__pb2.Void.SerializeToString,
-        response_deserializer=stdlib__pb2.PhysicalValue.FromString,
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+          channel: A grpc.Channel.
+        """
+        self.measure_stable_weight = channel.unary_unary(
+            '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/measure_stable_weight',
+            request_serializer=stdlib__pb2.Void.SerializeToString,
+            response_deserializer=stdlib__pb2.PhysicalValue.FromString,
         )
-    self.calibrate_balance = channel.unary_unary(
-        '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/calibrate_balance',
-        request_serializer=stdlib__pb2.Void.SerializeToString,
-        response_deserializer=stdlib__pb2.Void.FromString,
+        self.calibrate_balance = channel.unary_unary(
+            '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/calibrate_balance',
+            request_serializer=stdlib__pb2.Void.SerializeToString,
+            response_deserializer=stdlib__pb2.Void.FromString,
         )
-    self.tara = channel.unary_unary(
-        '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/tara',
-        request_serializer=stdlib__pb2.Void.SerializeToString,
-        response_deserializer=stdlib__pb2.Void.FromString,
+        self.set_tara = channel.unary_unary(
+            '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/set_tara',
+            request_serializer=stdlib__pb2.Void.SerializeToString,
+            response_deserializer=stdlib__pb2.Void.FromString,
         )
-    self.current_weight = channel.unary_stream(
-        '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/current_weight',
-        request_serializer=stdlib__pb2.SiLA_Property_Request.SerializeToString,
-        response_deserializer=stdlib__pb2.PhysicalValue.FromString,
+        self.reset_tara = channel.unary_unary(
+            '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/reset_tara',
+            request_serializer=stdlib__pb2.Void.SerializeToString,
+            response_deserializer=stdlib__pb2.Void.FromString,
         )
-    self.precision = channel.unary_unary(
-        '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/precision',
-        request_serializer=stdlib__pb2.SiLA_Property_Request.SerializeToString,
-        response_deserializer=stdlib__pb2.PhysicalValue.FromString,
+        self.current_weight = channel.unary_stream(
+            '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/current_weight',
+            request_serializer=stdlib__pb2.SiLA_Property_Request.SerializeToString,
+            response_deserializer=stdlib__pb2.PhysicalValue.FromString,
+        )
+        self.precision = channel.unary_unary(
+            '/org.sila_standard.v2.realease_candidate.can_weigh.can_weigh/precision',
+            request_serializer=stdlib__pb2.Void.SerializeToString,
+            response_deserializer=stdlib__pb2.PhysicalValue.FromString,
         )
 
 
 class can_weighServicer(object):
-  """Feature "can_weigh"
-  """
-
-  def measure_stable_weight(self, request, context):
-    """Command: measure_stable_weight
+    """Feature "can_weigh"
     """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
 
-  def calibrate_balance(self, request, context):
-    """Command: calibrate_balance
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    def measure_stable_weight(self, request, context):
+        """Command: measure_stable_weight
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
-  def tara(self, request, context):
-    """Command: tara
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    def calibrate_balance(self, request, context):
+        """Command: calibrate_balance
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
-  def current_weight(self, request, context):
-    """Property: current_weight
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    def set_tara(self, request, context):
+        """Command: set_tara
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
-  def precision(self, request, context):
-    """Property: precision (as it is a static property, it is a unary service)
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    def reset_tara(self, request, context):
+        """Command: reset_tara
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def current_weight(self, request, context):
+        """Property: current_weight
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def precision(self, request, context):
+        """Property: precision (as it is a static property, it is a unary service)
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_can_weighServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'measure_stable_weight': grpc.unary_unary_rpc_method_handler(
-          servicer.measure_stable_weight,
-          request_deserializer=stdlib__pb2.Void.FromString,
-          response_serializer=stdlib__pb2.PhysicalValue.SerializeToString,
-      ),
-      'calibrate_balance': grpc.unary_unary_rpc_method_handler(
-          servicer.calibrate_balance,
-          request_deserializer=stdlib__pb2.Void.FromString,
-          response_serializer=stdlib__pb2.Void.SerializeToString,
-      ),
-      'tara': grpc.unary_unary_rpc_method_handler(
-          servicer.tara,
-          request_deserializer=stdlib__pb2.Void.FromString,
-          response_serializer=stdlib__pb2.Void.SerializeToString,
-      ),
-      'current_weight': grpc.unary_stream_rpc_method_handler(
-          servicer.current_weight,
-          request_deserializer=stdlib__pb2.SiLA_Property_Request.FromString,
-          response_serializer=stdlib__pb2.PhysicalValue.SerializeToString,
-      ),
-      'precision': grpc.unary_unary_rpc_method_handler(
-          servicer.precision,
-          request_deserializer=stdlib__pb2.SiLA_Property_Request.FromString,
-          response_serializer=stdlib__pb2.PhysicalValue.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+    rpc_method_handlers = {
+        'measure_stable_weight': grpc.unary_unary_rpc_method_handler(
+            servicer.measure_stable_weight,
+            request_deserializer=stdlib__pb2.Void.FromString,
+            response_serializer=stdlib__pb2.PhysicalValue.SerializeToString,
+        ),
+        'calibrate_balance': grpc.unary_unary_rpc_method_handler(
+            servicer.calibrate_balance,
+            request_deserializer=stdlib__pb2.Void.FromString,
+            response_serializer=stdlib__pb2.Void.SerializeToString,
+        ),
+        'set_tara': grpc.unary_unary_rpc_method_handler(
+            servicer.set_tara,
+            request_deserializer=stdlib__pb2.Void.FromString,
+            response_serializer=stdlib__pb2.Void.SerializeToString,
+        ),
+        'reset_tara': grpc.unary_unary_rpc_method_handler(
+            servicer.reset_tara,
+            request_deserializer=stdlib__pb2.Void.FromString,
+            response_serializer=stdlib__pb2.Void.SerializeToString,
+        ),
+        'current_weight': grpc.unary_stream_rpc_method_handler(
+            servicer.current_weight,
+            request_deserializer=stdlib__pb2.SiLA_Property_Request.FromString,
+            response_serializer=stdlib__pb2.PhysicalValue.SerializeToString,
+        ),
+        'precision': grpc.unary_unary_rpc_method_handler(
+            servicer.precision,
+            request_deserializer=stdlib__pb2.Void.FromString,
+            response_serializer=stdlib__pb2.PhysicalValue.SerializeToString,
+        ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+        'org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
 
 
 class Betacan_weighServicer(object):
-  """Feature "can_weigh"
-  """
-  def measure_stable_weight(self, request, context):
-    """Command: measure_stable_weight
+    """Feature "can_weigh"
     """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def calibrate_balance(self, request, context):
-    """Command: calibrate_balance
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def tara(self, request, context):
-    """Command: tara
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def current_weight(self, request, context):
-    """Property: current_weight
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def precision(self, request, context):
-    """Property: precision (as it is a static property, it is a unary service)
-    """
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+
+    def measure_stable_weight(self, request, context):
+        """Command: measure_stable_weight
+        """
+        context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+
+    def calibrate_balance(self, request, context):
+        """Command: calibrate_balance
+        """
+        context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+
+    def set_tara(self, request, context):
+        """Command: set_tara
+        """
+        context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+
+    def reset_tara(self, request, context):
+        """Command: reset_tara
+        """
+        context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+
+    def current_weight(self, request, context):
+        """Property: current_weight
+        """
+        context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+
+    def precision(self, request, context):
+        """Property: precision (as it is a static property, it is a unary service)
+        """
+        context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
 class Betacan_weighStub(object):
-  """Feature "can_weigh"
-  """
-  def measure_stable_weight(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Command: measure_stable_weight
+    """Feature "can_weigh"
     """
-    raise NotImplementedError()
-  measure_stable_weight.future = None
-  def calibrate_balance(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Command: calibrate_balance
-    """
-    raise NotImplementedError()
-  calibrate_balance.future = None
-  def tara(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Command: tara
-    """
-    raise NotImplementedError()
-  tara.future = None
-  def current_weight(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Property: current_weight
-    """
-    raise NotImplementedError()
-  def precision(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    """Property: precision (as it is a static property, it is a unary service)
-    """
-    raise NotImplementedError()
-  precision.future = None
+
+    def measure_stable_weight(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+        """Command: measure_stable_weight
+        """
+        raise NotImplementedError()
+    measure_stable_weight.future = None
+
+    def calibrate_balance(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+        """Command: calibrate_balance
+        """
+        raise NotImplementedError()
+    calibrate_balance.future = None
+
+    def set_tara(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+        """Command: set_tara
+        """
+        raise NotImplementedError()
+    set_tara.future = None
+
+    def reset_tara(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+        """Command: reset_tara
+        """
+        raise NotImplementedError()
+    reset_tara.future = None
+
+    def current_weight(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+        """Property: current_weight
+        """
+        raise NotImplementedError()
+
+    def precision(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+        """Property: precision (as it is a static property, it is a unary service)
+        """
+        raise NotImplementedError()
+    precision.future = None
 
 
 def beta_create_can_weigh_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  request_deserializers = {
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): stdlib__pb2.Void.FromString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): stdlib__pb2.SiLA_Property_Request.FromString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): stdlib__pb2.Void.FromString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): stdlib__pb2.SiLA_Property_Request.FromString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'tara'): stdlib__pb2.Void.FromString,
-  }
-  response_serializers = {
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): stdlib__pb2.Void.SerializeToString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): stdlib__pb2.PhysicalValue.SerializeToString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): stdlib__pb2.PhysicalValue.SerializeToString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): stdlib__pb2.PhysicalValue.SerializeToString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'tara'): stdlib__pb2.Void.SerializeToString,
-  }
-  method_implementations = {
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): face_utilities.unary_unary_inline(servicer.calibrate_balance),
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): face_utilities.unary_stream_inline(servicer.current_weight),
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): face_utilities.unary_unary_inline(servicer.measure_stable_weight),
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): face_utilities.unary_unary_inline(servicer.precision),
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'tara'): face_utilities.unary_unary_inline(servicer.tara),
-  }
-  server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-  return beta_implementations.server(method_implementations, options=server_options)
+    request_deserializers = {
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): stdlib__pb2.Void.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): stdlib__pb2.SiLA_Property_Request.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): stdlib__pb2.Void.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): stdlib__pb2.Void.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'reset_tara'): stdlib__pb2.Void.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'set_tara'): stdlib__pb2.Void.FromString,
+    }
+    response_serializers = {
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): stdlib__pb2.Void.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): stdlib__pb2.PhysicalValue.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): stdlib__pb2.PhysicalValue.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): stdlib__pb2.PhysicalValue.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'reset_tara'): stdlib__pb2.Void.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'set_tara'): stdlib__pb2.Void.SerializeToString,
+    }
+    method_implementations = {
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): face_utilities.unary_unary_inline(servicer.calibrate_balance),
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): face_utilities.unary_stream_inline(servicer.current_weight),
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): face_utilities.unary_unary_inline(servicer.measure_stable_weight),
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): face_utilities.unary_unary_inline(servicer.precision),
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'reset_tara'): face_utilities.unary_unary_inline(servicer.reset_tara),
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'set_tara'): face_utilities.unary_unary_inline(servicer.set_tara),
+    }
+    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers,
+                                                         thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
+    return beta_implementations.server(method_implementations, options=server_options)
 
 
 def beta_create_can_weigh_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  request_serializers = {
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): stdlib__pb2.Void.SerializeToString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): stdlib__pb2.SiLA_Property_Request.SerializeToString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): stdlib__pb2.Void.SerializeToString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): stdlib__pb2.SiLA_Property_Request.SerializeToString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'tara'): stdlib__pb2.Void.SerializeToString,
-  }
-  response_deserializers = {
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): stdlib__pb2.Void.FromString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): stdlib__pb2.PhysicalValue.FromString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): stdlib__pb2.PhysicalValue.FromString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): stdlib__pb2.PhysicalValue.FromString,
-    ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'tara'): stdlib__pb2.Void.FromString,
-  }
-  cardinalities = {
-    'calibrate_balance': cardinality.Cardinality.UNARY_UNARY,
-    'current_weight': cardinality.Cardinality.UNARY_STREAM,
-    'measure_stable_weight': cardinality.Cardinality.UNARY_UNARY,
-    'precision': cardinality.Cardinality.UNARY_UNARY,
-    'tara': cardinality.Cardinality.UNARY_UNARY,
-  }
-  stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-  return beta_implementations.dynamic_stub(channel, 'org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', cardinalities, options=stub_options)
+    request_serializers = {
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): stdlib__pb2.Void.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): stdlib__pb2.SiLA_Property_Request.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): stdlib__pb2.Void.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): stdlib__pb2.Void.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'reset_tara'): stdlib__pb2.Void.SerializeToString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'set_tara'): stdlib__pb2.Void.SerializeToString,
+    }
+    response_deserializers = {
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'calibrate_balance'): stdlib__pb2.Void.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'current_weight'): stdlib__pb2.PhysicalValue.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'measure_stable_weight'): stdlib__pb2.PhysicalValue.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'precision'): stdlib__pb2.PhysicalValue.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'reset_tara'): stdlib__pb2.Void.FromString,
+        ('org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', 'set_tara'): stdlib__pb2.Void.FromString,
+    }
+    cardinalities = {
+        'calibrate_balance': cardinality.Cardinality.UNARY_UNARY,
+        'current_weight': cardinality.Cardinality.UNARY_STREAM,
+        'measure_stable_weight': cardinality.Cardinality.UNARY_UNARY,
+        'precision': cardinality.Cardinality.UNARY_UNARY,
+        'reset_tara': cardinality.Cardinality.UNARY_UNARY,
+        'set_tara': cardinality.Cardinality.UNARY_UNARY,
+    }
+    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers,
+                                                     response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
+    return beta_implementations.dynamic_stub(channel, 'org.sila_standard.v2.realease_candidate.can_weigh.can_weigh', cardinalities, options=stub_options)
 # @@protoc_insertion_point(module_scope)
