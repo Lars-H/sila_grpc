@@ -14,34 +14,29 @@ package org.sila_standard.v2.realease_candidate.stdlib;
 // Used for Properties or
 message Void
 {
-    SiLA_Metadata metadata = 1;
 }
 
 // String Message
 message String
 {
-    SiLA_Metadata metadata = 1;
     string value = 2;
 }
 
 // Integer Message
 message Integer
 {
-    SiLA_Metadata metadata = 1;
     int64 value = 2;
 }
 
 // Real Number Message
 message RealNumbber
 {
-    SiLA_Metadata metadata = 1;
     double value = 2;
 }
 
 // Complex Number
 message ComplexNumber
 {
-    SiLA_Metadata metadata = 1;
     double real_value = 2;
     double imaginary_value = 3;
 }
@@ -49,14 +44,10 @@ message ComplexNumber
 // Physical Value
 message PhysicalValue
 {
-    SiLA_Metadata metadata = 1;
     double value = 2;
     string label = 3;
     repeated Unit unit= 4;
 }
-
-
-
 
 
 // Unit Message
@@ -69,6 +60,8 @@ message Unit
 
 }
 
+// SI Units
+// Foundation for defining any derived Units
 enum SIUnit
 {
     METER = 1;
@@ -83,29 +76,19 @@ enum SIUnit
 // Boolean Message
 message Boolean
 {
-    SiLA_Metadata metadata = 1;
     bool value = 2;
 }
 
 // Date Message
 message Date
 {
-    SiLA_Metadata metadata = 1;
+    // Format Convention: 2002-05-30T09:30:10+06:00
+    // Date - Time - Zone Offset
+    // YYYY-MM-DDThh:mm:ss±hh:mm
     string value = 2;
 }
 
 // Complex SiLA Messages
-
-// SiLA Metaddata as described in the Specification
-// Required: progress
-// Optional: estimated_duration
-message SiLA_Metadata
-{
-    double progress = 1;
-    PhysicalValue estimated_duration = 2;
-}
-
-
 // Error Message as described in the Specification
 message SiLA_Error_Message
 {
