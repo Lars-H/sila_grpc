@@ -13,8 +13,7 @@ package org.sila_standard.v2.realease_candidate.stdlib;
 // Empty Message
 // Used for Properties or
 message Void
-{
-}
+{}
 
 // String Message
 message String
@@ -64,13 +63,14 @@ message Unit
 // Foundation for defining any derived Units
 enum SIUnit
 {
-    METER = 1;
-    KILOGRAM = 2;
-    SECOND = 3;
-    AMPERE = 4;
-    KELVIN = 5;
-    MOLE= 6;
-    CANDELA = 7;
+    NONE = 0;       // label none
+    METER = 1;      // label m
+    KILOGRAM = 2;   // lable kg
+    SECOND = 3;     // label s
+    AMPERE = 4;     // label A
+    KELVIN = 5;     // label K
+    MOLE= 6;        // label mol
+    CANDELA = 7;    // label cd
 }
 
 // Boolean Message

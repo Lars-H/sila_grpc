@@ -19,6 +19,7 @@ service SiLAService
     // Property: Supported Features
     // This Property holds infortmation on all supported features of the device
     rpc supported_features(stdlib.Void) returns (SupportedFeatures){};
+
 }
 
 // Message to hold all device identification information
