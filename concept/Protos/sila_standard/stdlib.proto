@@ -22,13 +22,13 @@ message String
 }
 
 // Integer Message
-message Integer
+message IntegerNumber
 {
     int64 value = 2;
 }
 
 // Real Number Message
-message RealNumbber
+message RealNumber
 {
     double value = 2;
 }
@@ -79,13 +79,69 @@ message Boolean
     bool value = 2;
 }
 
-// Date Message
-message Date
+// DateTime Message
+message DateTime
 {
     // Format Convention: 2002-05-30T09:30:10+06:00
     // Date - Time - Zone Offset
     // YYYY-MM-DDThh:mm:ss±hh:mm
     string value = 2;
+}
+
+// Date Message
+message Date
+{
+    // Format Convention: 2002-05-30
+    // Date - Time - Zone Offset
+    // YYYY-MM-DD
+    string value = 2;
+}
+
+// Date Message
+message Time
+{
+    // Format Convention: T09:30:10
+    // Date - Time - Zone Offset
+    // Thh:mm:ss
+    string value = 2;
+}
+
+// Arrays
+message Array
+{
+    repeated SiLAType field = 1;
+}
+
+
+
+// Parameter
+message Parameter
+{
+    string identifier = 1;
+    SiLAType value = 2;
+}
+
+// List of Parameters
+message Parameters
+{
+    repeated Paramter parameter = 1;
+}
+
+message SiLAType
+{
+    oneof kind
+    {
+        Void void = 1;
+        String string = 2;
+        IntegerNumber integerNumber = 3;
+        RealNumber realNumber = 4;
+        ComplexNumber complexNumber = 5;
+        PhysicalValue physicalValue = 6;
+        Boolean boolean = 7;
+        DateTime dateTime = 8;
+        Date date = 9;
+        Time time = 10;
+    }
 }
 
 // Complex SiLA Messages

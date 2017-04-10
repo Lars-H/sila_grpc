@@ -1,6 +1,6 @@
 from grpc.tools import protoc
 
-protofile = "SiLAService"
+protofile = "stdlib"
 cmd = (
     '',
     '-I.',
